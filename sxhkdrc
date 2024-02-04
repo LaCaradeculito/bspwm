@@ -1,0 +1,287 @@
+
+super + @space
+	notify-send "$(date +"%H:%M:%S - %A %d.%m.%y")" "$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|percentage")"
+
+super + {Print,Delete}
+	{ \
+	scrot '%Y%m%d_%H%M%S_$wx$h_ventana.png' -ue 'mv $f ~/Pictures/', \
+	scrot '%Y%m%d_%H%M%S_$wx$h_seleccion.png' -s -e 'mv $f ~/Pictures/', \
+	}
+
+super + Return; {a,s}
+	{ \
+	alacritty -e ranger, \
+	st -e ranger, \
+	}
+	
+alt + Return; {a,s}
+	{ \
+	alacritty, \
+	st, \
+	}
+
+super + {1,2,3}
+	{ \
+	xrandr --auto, \
+
+	xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-1 --mode 1920x1080 \
+		&& xrandr --output eDP-1 --mode 1920x1080 --same-as HDMI-1 --mode 1920x1080 \
+		&& bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9 \
+		&& bspc wm --reorder-monitors eDP-1 HDMI-1, \
+
+	xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-1 --mode 1920x1080 \
+		&& xrandr --output eDP-1 --mode 1920x1080 --below HDMI-1 \
+		&& bspc monitor HDMI-1 -d 5 6 7 8 9 \
+		&& bspc monitor eDP-1 -d 1 2 3 4 \
+		&& bspc wm --reorder-monitors eDP-1 HDMI-1, \
+	}
+	
+super + shift + {5-9,0}
+	{ \
+	pkill -USR1 -x sxhkd, \
+ 	bspc wm -r, \
+	bspc quit, \
+	notify-send "You are about to SUSPEND me\, bitch!"; sleep 2 && systemctl suspend, \
+	notify-send "You are about to REBOOT me\, bitch!"; sleep 2 && reboot, \
+	notify-send "You are about to SHUT me down\, bitch!"; sleep 2 && shutdown now, \
+	}
+
+super + shift + {b,c,i,k,r,s,x,w}
+	alacritty -e nvim \
+	{ \
+	~/.bashrc, \
+	~/.config/sxhkd/sxhkdrc, \
+	~/.config/nvim/init.vim, \
+	~/.config/nvim/vimKeys.wiki, \
+	~/.config/ranger/rifle.conf, \
+	~/.config/sc-im/scimrc, \
+	~/.xinitrc, \
+	~/.config/bspwm/bspwmrc, \
+	}
+
+super + f
+	cd ~/Aplicaciones/Portables/ && ./Font*
+
+super + g
+	gimp
+
+super + i
+	inkscape
+
+super + j; {b,c,j}
+	{ \
+	alacritty -e jrnl --config-override template ~/Templates/bashScript.sh, \
+	st -e jrnl --config-override template ~/Templates/02_sisColor.md, \
+	alacritty -e jrnl, \
+	}
+
+super + j; {shift + c,e,l,o,p,shift + p,r}
+	{ \
+	st -e jrnl --config-override template ~/Templates/05_PP6_carpetaPractica.md, \
+		st -e jrnl --config-override template ~/Templates/05_PP67_ensayo.md, \
+	st -e jrnl --config-override template ~/Templates/01_carta.md, \
+	st -e jrnl --config-override template ~/Templates/05_PP67_observaciones.md, \
+	st -e jrnl --config-override template ~/Templates/05_PP6_proyecto.md, \
+	st -e jrnl --config-override template ~/Templates/04_PAP.md, \
+	st -e jrnl --config-override template ~/Templates/05_PP67_practicasRegistro.md, \
+	}
+
+super + {_,shift,alt} + l
+	{ \
+	libreoffice, \
+	cd /home/alumno/Aplicaciones/Portables && ./libresprite*, \
+	aseprite, \
+	}
+
+super + {_,shift} + m
+	{ \
+	thunderbird, \
+	magnus, \
+	}
+
+super + shift + n
+	alacritty -e nmtui
+
+super + {_,shift} + o
+	{	\
+	flatpak run com.obsproject.Studio, \
+	flatpak run md.obsidian.Obsidian, \
+	}
+	
+
+super + {_,ctrl,shift} + p
+	{ \
+	pavucontrol, \
+	alacritty -e pulsemixer, \
+	cd /home/alumno/Aplicaciones/Portables/pseint/ && ./pseint, \
+	}
+
+super + alt + p; {p,c}
+	{ \
+	dmenu_run -nb '#000000' -nf '#7e9174' -fn 'terminus-18' -b, \
+	clipmenu -nb '#000000' -nf '#cb6b6c' -fn 'terminus-14', \
+	}
+
+super + shift + p; {c,e,l,o,u,x}
+	{ \
+	papis --cc, \
+	cd /tmp/ && alacritty -e ./papis_add.sh, \
+	cp ~/Templates/papis_add.sh /tmp/ && alacritty -e nvim /tmp/papis_add.sh, \
+	st -e papis open, \
+	cd /tmp/ && alacritty -e ./papis_update.sh, \
+	cp ~/Templates/papis_export.sh /tmp/ && alacritty -e nvim /tmp/papis_export.sh, \
+	}
+
+super + {_,ctrl,alt} + r
+	{ \
+	eruler, \
+	xcolor -f hex -s clipboard, \
+	gpick, \
+	}
+
+super + {_,ctrl,alt,ctrl + shift} + s
+	{ \
+	alacritty -e spt, \
+	cd ~/Aplicaciones/Portables/ && ./Sioyek-x86_64.AppImage, \
+	killall spotifyd; spotifyd -b pulseaudio -v alsa -u lacaradeculito -p ruF1na71, \
+	shattered-pixel-dungeon, \
+	}
+
+super + t
+	alacritty -e tint -l 3 -n
+
+super + v; {a,h}
+	{ \
+	st -e sc-im ~/DATOS/2023/01_docencia/01_ISFAlola/07_PP/03_pp6/03_seguimiento/00_asistencia/asistencia.sc, \
+	st -e sc-im ~/DATOS/2023/01_docencia/01_ISFAlola/07_PP/05_catedra/PP6_gestion/horarios/horarios2023.sc, \
+	}
+
+super + shift + v
+	virtualbox
+
+super + w; {c,q,t,w}
+	{ \
+	chromium http://web.whatsapp.com,, \
+	qutebrowser --qt-flag disable-accelerated-2d-canvas http://lolamora-caba.infd.edu.ar/aula, \
+	cd /home/alumno/Aplicaciones/Portables/tor-browser/ && ./start-tor-browser.desktop, \
+	qutebrowser --temp-basedir -s content.private_browsing true http://lolamora-caba.infd.edu.ar/aula, \
+	}
+
+super + x
+	cd ~/Aplicaciones/Portables/exelearning28/ && ./exelearning.sh
+
+super + z
+	cd ~/Aplicaciones/Portables/Zotero_linux-x86_64 && ./zotero
+
+#
+# bspwm hotkeys
+# #############
+
+# quit/restart bspwm
+# super + alt + {q,r}
+#	bspc {quit,wm -r}
+
+# close and kill
+alt + {_,shift + }w
+	bspc node -{c,k}
+
+# alternate between the tiled and monocle layout
+alt + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+alt + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest window
+alt + g
+	bspc node -s biggest.window
+
+#
+# state/flags
+#
+
+# set the window state
+alt + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+alt + ctrl + {m,l,s,p}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+alt + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+alt + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+alt + {_,shift + } c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+alt + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last node/desktop
+alt + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus the older or newer node in the focus history
+alt + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+alt + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+alt + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+alt + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+alt + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+alt + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+alt + shift + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+alt + ctrl + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+alt + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# rotar composición de pantalla
+alt + {_,shift} + r
+	{ \
+	bspc node @parent -R 90, \
+	bspc node @parent -R 90, \
+	}
