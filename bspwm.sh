@@ -13,7 +13,7 @@ echo "MAIN PACKAGES"
 
 sleep 5
 
-sudo pacman -S --noconfirm xorg xorg-xinit bspwm sxhkd firefox alacritty picom nitrogen lxappearance dmenu clipmenu xorg-xrandr ranger arandr alsa-utils alsa-utils arc-gtk-theme arc-icon-theme ttf-liberation ttf-linux-libertine noto-fonts ttf-roboto adobe-source-code-pro-fonts cantarell-fonts playerctl scrot dunst pacman-contrib
+sudo pacman -S --noconfirm xorg xorg-xinit bspwm sxhkd firefox alacritty picom nitrogen lxappearance dmenu clipmenu xorg-xrandr ranger arandr alsa-utils alsa-utils arc-gtk-theme arc-icon-theme ttf-liberation ttf-linux-libertine noto-fonts ttf-roboto adobe-source-code-pro-fonts cantarell-fonts playerctl scrot dunst pacman-contrib qutebrowser thunderbird libreoffice inkscape gimp sshfs
 
 mkdir -p .config/{bspwm,sxhkd,dunst}
 
