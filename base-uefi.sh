@@ -5,7 +5,7 @@ hwclock --systohc
 sed -i '178s/.//' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "KEYMAP=es-latin1" >> /etc/vconsole.conf
+echo "KEYMAP=la-latin1" >> /etc/vconsole.conf
 echo "alumno" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
